@@ -1,0 +1,25 @@
+name: deploy
+on:
+    push:
+        branches: [ "main" ]
+        paths: [ "**", "!**.md" ]
+env:
+    PACKAGE_NAME: "ghcr.io/oskarbarcz/symfony-project-bootstrap"
+    PACKAGE_VERSION: "3.0.0"
+jobs:
+    deploy:
+        runs-on: ubuntu-22.04
+        timeout-minutes: 3
+        steps:
+            # checkout repository
+            - { name: "Login to ghcr.io", uses: "docker/login-action@v2", with: { registry: "ghcr.io", username: "${{github.actor}}", password: "${{secrets.GITHUB_TOKEN}}" } }
+            - { name: "Clone git repository", uses: "actions/checkout@v3" }
+
+            # build containers using minimal configuration created for CI
+            - { name: "Load CI env configuration", run: "ln -s ./etc/envs/compose.ci.yaml . && mv compose.ci.yaml compose.override.yaml" }
+            - { name: "Build app docker image", run: "docker build -t ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} ." }
+
+            # publish tag and image
+            - { name: "Release tag", run: "git tag ${{ env.PACKAGE_VERSION }}" }
+            - { name: "Publish tag", run: "git push --tags" }
+            - { name: "Publish docker image", run: "docker push ${{ env.PACKAGE_NAME}}:${{ env.PACKAGE_VERSION }}" }

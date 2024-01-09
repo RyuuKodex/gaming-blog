@@ -1,0 +1,10 @@
+services:
+  app:
+    environment:
+      PHP_OPCACHE_ENABLE: "false"
+    ports:
+      - "80"
+  database:
+    # Functional tests will need working database
+    ports:
+     - "3306"

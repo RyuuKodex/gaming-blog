@@ -1,0 +1,37 @@
+services:
+  app:
+    user: "0"
+    environment:
+      PHP_OPCACHE_ENABLE: "false"
+      # Logs
+      CADDY_LOG_OUTPUT: "file /var/log/caddy.log"
+      CADDY_LOG_LEVEL: "INFO"
+      FPM_ACCESS_LOG: "/var/log/php-fpm.access.log"
+      FPM_ERROR_LOG: "/var/log/php-fpm.error.log"
+      FPM_LOG_LEVEL: "notice"
+      PHP_ERROR_LOG: "/var/log/php.error.log"
+      PHP_LOG_LEVEL: "E_ALL"
+      XDEBUG_OUTPUT_DIR: "/var/log"
+      # Debugging
+      PHP_IDE_CONFIG: "serverName=docker"
+      XDEBUG_MODE: "debug"
+      XDEBUG_CONFIG: "client_host=host.docker.internal"
+      # Application
+      APP_ENV: "dev"
+      APP_SECRET: "a9806d99cd5c1503d8af30c963c9411f"
+      DATABASE_URL: "mysql://user:password@database:3306/symfony-bootstrap"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+    ports:
+      - "80:80"
+    volumes:
+      - { type: volume, source: composer_cache, target: /root/.composer/cache }
+      - { type: bind, source: ./app, target: /app }
+    working_dir: /app
+  database:
+    ports:
+      - "3306:3306"
+volumes:
+  composer_cache:
+    driver: local
+    name: global_composer_cache

@@ -1,0 +1,24 @@
+#############################
+### IDE
+#############################
+# PhpStorm
+/.idea
+
+#############################
+### Docker
+#############################
+# Currently used profile
+/compose.override.yaml
+
+#############################
+### PHP / Symfony
+#############################
+# Vendors
+app/vendor
+
+# Cache and logs
+app/var
+
+# Code quality tools cache files
+/app/.phpunit.result.cache
+/app/.php-cs-fixer.cache
