@@ -8,11 +8,12 @@ doctrine:
     naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
     auto_mapping: true
     mappings:
-#            App:
-#                is_bundle: false
-#                dir: '%kernel.project_dir%/src/Entity'
-#                prefix: 'App\Entity'
-#                alias: App
+      Article:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Article/Infrastructure/Entity'
+        prefix: 'App\Article\Infrastructure\Entity'
+        alias: App
+
 
 when@test:
   doctrine:
