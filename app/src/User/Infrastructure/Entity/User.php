@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\Entity;
 
+use App\Article\Infrastructure\Entity\Article;
 use App\User\Infrastructure\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
@@ -25,6 +27,20 @@ class User implements UserInterface
     /** @var string[] */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
+
+    /** @var Collection<int, Article> */
+    #[ORM\OneToMany(
+        mappedBy: 'author',
+        targetEntity: Article::class,
+    )]
+    private Collection $articles;
+
+    /** @var Collection<int, Article> */
+    #[ORM\OneToMany(
+        mappedBy: 'reviewer',
+        targetEntity: Article::class
+    )]
+    private Collection $reviewedArticles;
 
     public function __construct(Uuid $id, string $name, string $identifier, string $token)
     {
@@ -69,4 +85,28 @@ class User implements UserInterface
     }
 
     public function eraseCredentials(): void {}
+
+    /** @return Collection<int, Article> */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    /** @param  Collection<int, Article> $articles */
+    public function setArticles(Collection $articles): void
+    {
+        $this->articles = $articles;
+    }
+
+    /** @return Collection<int, Article> */
+    public function getReviewedArticles(): Collection
+    {
+        return $this->reviewedArticles;
+    }
+
+    /** @param  Collection<int, Article> $reviewedArticles */
+    public function setReviewedArticles(Collection $reviewedArticles): void
+    {
+        $this->reviewedArticles = $reviewedArticles;
+    }
 }
