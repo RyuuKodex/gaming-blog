@@ -13,6 +13,11 @@ doctrine:
         dir: '%kernel.project_dir%/src/Article/Infrastructure/Entity'
         prefix: 'App\Article\Infrastructure\Entity'
         alias: App
+      User:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/User/Infrastructure/Entity'
+        prefix: 'App\User\Infrastructure\Entity'
+        alias: App
 
 
 when@test:

@@ -2,6 +2,10 @@ article:
   resource: ../src/Article/UI/Action/
   type: attribute
 
+user:
+  resource: ../src/User/UI/Action/
+  type: attribute
+
 kernel:
   resource: ../src/Kernel.php
   type: annotation
