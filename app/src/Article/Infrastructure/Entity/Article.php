@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure\Entity;
 
 use App\Article\Infrastructure\Repository\ArticleRepository;
+use App\User\Infrastructure\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
@@ -20,6 +21,12 @@ class Article
     private string $slug;
     #[ORM\Column(type: 'text')]
     private string $content;
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(name: 'author_id', nullable: false)]
+    private User $author;
+    #[ORM\ManyToOne(inversedBy: 'reviewed_articles')]
+    #[ORM\JoinColumn(name: 'reviewer_id', nullable: true)]
+    private ?User $reviewer;
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
     #[ORM\Column(nullable: true)]
@@ -28,14 +35,19 @@ class Article
     public function __construct(
         Uuid $id,
         string $title,
+        string $slug,
         string $text,
+        User $author,
         \DateTimeImmutable $createdAt,
     ) {
         $this->id = $id;
         $this->title = $title;
+        $this->slug = $slug;
         $this->content = $text;
+        $this->author = $author;
         $this->createdAt = $createdAt;
         $this->updatedAt = null;
+        $this->reviewer = null;
     }
 
     public function getId(): Uuid
@@ -56,6 +68,16 @@ class Article
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    public function getReviewer(): ?User
+    {
+        return $this->reviewer;
     }
 
     public function getCreatedAt(): \DateTimeImmutable
