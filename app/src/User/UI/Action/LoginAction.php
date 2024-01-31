@@ -10,9 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LoginAction extends AbstractController
 {
+    public function __construct(private readonly string $serviceCanonicalName) {}
+
     #[Route('/api/login', methods: 'GET')]
     public function __invoke(): Response
     {
-        return $this->redirect('https://accounts.atcloud.pro/en/authorize?service=test-blog.dev');
+        return $this->redirect("https://accounts.atcloud.pro/en/authorize?service={$this->serviceCanonicalName}");
     }
 }

@@ -6,7 +6,7 @@ namespace App\Article\Domain\Repository;
 
 use App\Article\Infrastructure\Entity\Article;
 
-interface ArticleRepositoryInterface
+interface ArticleStoreInterface
 {
     public function save(Article $entity): void;
 }

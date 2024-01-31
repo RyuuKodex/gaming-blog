@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Article\UI\Form\Dto;
+namespace App\Article\UI\Form\Data;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ArticleDto
+class CreateArticleData
 {
     #[Assert\NotBlank]
     private string $title;

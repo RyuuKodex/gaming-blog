@@ -9,7 +9,7 @@ use App\User\Infrastructure\AccountManager\Client\Response\Identifier;
 use App\User\Infrastructure\AccountManager\Client\Response\UserDataResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final readonly class CheckLoggedUser
+final readonly class AtCloudClient
 {
     public function __construct(private HttpClientInterface $client) {}
 

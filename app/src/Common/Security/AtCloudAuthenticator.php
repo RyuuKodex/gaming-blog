@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Common\Security;
 
-use App\User\Application\Command\CreateUser;
-use App\User\Domain\Repository\UserRepositoryInterface;
-use App\User\Infrastructure\AccountManager\Client\CheckLoggedUser;
+use App\User\Application\Command\CreateUserCommand;
+use App\User\Domain\Repository\UserStoreInterface;
+use App\User\Infrastructure\AccountManager\Client\AtCloudClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +22,8 @@ use Symfony\Component\Uid\Uuid;
 final class AtCloudAuthenticator extends AbstractAuthenticator
 {
     public function __construct(
-        private readonly CheckLoggedUser $checkLoggedUser,
-        private readonly UserRepositoryInterface $userRepository,
+        private readonly AtCloudClient $atCloudClient,
+        private readonly UserStoreInterface $userStore,
         private readonly MessageBusInterface $messageBus,
     ) {}
 
@@ -39,12 +39,12 @@ final class AtCloudAuthenticator extends AbstractAuthenticator
     public function authenticate(Request $request): Passport
     {
         $token = $request->get('token');
-        $userData = $this->checkLoggedUser->fetchUserInformation($token);
+        $userData = $this->atCloudClient->fetchUserInformation($token);
         $identifierValue = $userData->getIdentifier()->getValue();
-        $user = $this->userRepository->findOneByIdentifier($identifierValue);
+        $user = $this->userStore->findOneByIdentifier($identifierValue);
 
         if (null === $user) {
-            $this->messageBus->dispatch(new CreateUser(Uuid::v4(), $userData->getName(), $identifierValue, $token));
+            $this->messageBus->dispatch(new CreateUserCommand(Uuid::v4(), $userData->getName(), $identifierValue, $token));
         } else {
             $user->updateToken($token);
         }

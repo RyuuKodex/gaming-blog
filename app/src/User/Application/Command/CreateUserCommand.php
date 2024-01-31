@@ -6,7 +6,7 @@ namespace App\User\Application\Command;
 
 use Symfony\Component\Uid\Uuid;
 
-final readonly class CreateUser
+final readonly class CreateUserCommand
 {
     public function __construct(
         private Uuid $id,
