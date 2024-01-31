@@ -13,19 +13,19 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
-        "symfony/dotenv": "6.3.*",
+        "symfony/dotenv": "7.0.*",
         "symfony/flex": "^2",
-        "symfony/form": "6.3.*",
-        "symfony/framework-bundle": "6.3.*",
-        "symfony/http-client": "6.3.*",
-        "symfony/messenger": "6.3.*",
+        "symfony/form": "7.0.*",
+        "symfony/framework-bundle": "7.0.*",
+        "symfony/http-client": "7.0.*",
+        "symfony/messenger": "7.0.*",
         "symfony/monolog-bundle": "^3.8",
-        "symfony/runtime": "6.3.*",
-        "symfony/security-bundle": "6.3.*",
-        "symfony/string": "6.3.*",
-        "symfony/uid": "6.3.*",
-        "symfony/validator": "6.3.*",
-        "symfony/yaml": "6.3.*"
+        "symfony/runtime": "7.0.*",
+        "symfony/security-bundle": "7.0.*",
+        "symfony/string": "7.0.*",
+        "symfony/uid": "7.0.*",
+        "symfony/validator": "7.0.*",
+        "symfony/yaml": "7.0.*"
     },
     "config": {
         "allow-plugins": {
@@ -85,7 +85,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "7.0.*"
         }
     },
     "require-dev": {
@@ -95,8 +95,8 @@
         "phpstan/phpstan-phpunit": "^1.1",
         "phpstan/phpstan-symfony": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "symfony/phpunit-bridge": "6.3.*",
-        "symfony/stopwatch": "6.3.*",
-        "symfony/web-profiler-bundle": "6.3.*"
+        "symfony/phpunit-bridge": "7.0.*",
+        "symfony/stopwatch": "7.0.*",
+        "symfony/web-profiler-bundle": "7.0.*"
     }
 }
