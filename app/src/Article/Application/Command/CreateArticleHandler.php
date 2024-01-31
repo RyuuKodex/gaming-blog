@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Command;
 
+use App\Article\Domain\Repository\ArticleStoreInterface;
 use App\Article\Infrastructure\Entity\Article;
-use App\Article\Infrastructure\Repository\ArticleRepository;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[AsMessageHandler]
 final readonly class CreateArticleHandler
 {
-    public function __construct(private ArticleRepository $repository, private SluggerInterface $slugger) {}
+    public function __construct(private ArticleStoreInterface $articleStore, private SluggerInterface $slugger) {}
 
-    public function __invoke(CreateArticle $command): void
+    public function __invoke(CreateArticleCommand $command): void
     {
         $slug = $this->slugger->slug($command->getTitle());
 
@@ -27,6 +27,6 @@ final readonly class CreateArticleHandler
             new \DateTimeImmutable()
         );
 
-        $this->repository->save($article);
+        $this->articleStore->save($article);
     }
 }

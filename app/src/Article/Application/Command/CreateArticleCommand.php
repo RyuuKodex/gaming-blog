@@ -7,7 +7,7 @@ namespace App\Article\Application\Command;
 use App\User\Infrastructure\Entity\User;
 use Symfony\Component\Uid\Uuid;
 
-final readonly class CreateArticle
+final readonly class CreateArticleCommand
 {
     public function __construct(
         private Uuid $id,

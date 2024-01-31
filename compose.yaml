@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: app
+    image: ghcr.io/RyuuKodex/gaming-blog:${VERSION:-0.1.0}
     environment:
       APP_ENV: "dev"
       APP_SECRET: "a9806d99cd5c1503d8af30c963c9411f"

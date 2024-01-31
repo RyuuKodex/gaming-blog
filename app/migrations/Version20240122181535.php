@@ -9,11 +9,6 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20240122181535 extends AbstractMigration
 {
-    public function getDescription(): string
-    {
-        return 'Add relation between user and articles';
-    }
-
     public function up(Schema $schema): void
     {
         $this->addSql('ALTER TABLE article ADD author_id BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', ADD reviewer_id BINARY(16) DEFAULT NULL COMMENT \'(DC2Type:uuid)\'');

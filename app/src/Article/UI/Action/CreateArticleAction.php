@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Article\UI\Action;
 
-use App\Article\Application\Command\CreateArticle;
-use App\Article\UI\Form\Dto\ArticleDto;
-use App\Article\UI\Form\Type\ArticleType;
+use App\Article\Application\Command\CreateArticleCommand;
+use App\Article\UI\Form\CreateArticleType;
+use App\Article\UI\Form\Data\CreateArticleData;
 use App\User\Infrastructure\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,20 +22,20 @@ class CreateArticleAction extends AbstractController
     #[Route('/api/create-article')]
     public function __invoke(Request $request): Response
     {
-        $articleDto = new ArticleDto();
+        $articleDto = new CreateArticleData();
 
-        $form = $this->createForm(ArticleType::class, $articleDto);
+        $form = $this->createForm(CreateArticleType::class, $articleDto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var ArticleDto $articleDto */
+            /** @var CreateArticleData $articleDto */
             $articleDto = $form->getData();
             $id = Uuid::v4();
 
             /** @var User $user */
             $user = $this->getUser();
 
-            $command = new CreateArticle($id, $articleDto->getTitle(), $articleDto->getContent(), $user);
+            $command = new CreateArticleCommand($id, $articleDto->getTitle(), $articleDto->getContent(), $user);
             $this->messageBus->dispatch($command);
         }
 

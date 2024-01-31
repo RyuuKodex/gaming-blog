@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Infrastructure\Repository;
 
-use App\Article\Domain\Repository\ArticleRepositoryInterface;
+use App\Article\Domain\Repository\ArticleStoreInterface;
 use App\Article\Infrastructure\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Article[]    findAll()
  * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class ArticleRepository extends ServiceEntityRepository implements ArticleRepositoryInterface
+final class ArticleRepository extends ServiceEntityRepository implements ArticleStoreInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
