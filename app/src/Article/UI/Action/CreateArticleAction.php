@@ -22,9 +22,7 @@ class CreateArticleAction extends AbstractController
     #[Route('/api/create-article')]
     public function __invoke(Request $request): Response
     {
-        $articleDto = new CreateArticleData();
-
-        $form = $this->createForm(CreateArticleType::class, $articleDto);
+        $form = $this->createForm(CreateArticleType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
