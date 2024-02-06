@@ -6,6 +6,7 @@ namespace App\User\Infrastructure\Entity;
 
 use App\Article\Infrastructure\Entity\Article;
 use App\User\Infrastructure\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -48,6 +49,8 @@ class User implements UserInterface
         $this->name = $name;
         $this->identifier = $identifier;
         $this->token = $token;
+        $this->articles = new ArrayCollection();
+        $this->reviewedArticles = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -92,21 +95,9 @@ class User implements UserInterface
         return $this->articles;
     }
 
-    /** @param  Collection<int, Article> $articles */
-    public function setArticles(Collection $articles): void
-    {
-        $this->articles = $articles;
-    }
-
     /** @return Collection<int, Article> */
     public function getReviewedArticles(): Collection
     {
         return $this->reviewedArticles;
-    }
-
-    /** @param  Collection<int, Article> $reviewedArticles */
-    public function setReviewedArticles(Collection $reviewedArticles): void
-    {
-        $this->reviewedArticles = $reviewedArticles;
     }
 }

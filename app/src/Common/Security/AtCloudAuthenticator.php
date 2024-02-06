@@ -6,7 +6,7 @@ namespace App\Common\Security;
 
 use App\User\Application\Command\CreateUserCommand;
 use App\User\Domain\Repository\UserStoreInterface;
-use App\User\Infrastructure\AccountManager\Client\AtCloudClient;
+use App\User\Infrastructure\AccountManager\Client\AtCloudClientInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +22,7 @@ use Symfony\Component\Uid\Uuid;
 final class AtCloudAuthenticator extends AbstractAuthenticator
 {
     public function __construct(
-        private readonly AtCloudClient $atCloudClient,
+        private readonly AtCloudClientInterface $atCloudClient,
         private readonly UserStoreInterface $userStore,
         private readonly MessageBusInterface $messageBus,
     ) {}
