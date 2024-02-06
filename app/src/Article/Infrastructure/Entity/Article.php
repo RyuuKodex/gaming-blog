@@ -24,7 +24,7 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(name: 'author_id', nullable: false)]
     private User $author;
-    #[ORM\ManyToOne(inversedBy: 'reviewed_articles')]
+    #[ORM\ManyToOne(inversedBy: 'reviewedArticles')]
     #[ORM\JoinColumn(name: 'reviewer_id', nullable: true)]
     private ?User $reviewer;
     #[ORM\Column]
@@ -36,14 +36,14 @@ class Article
         Uuid $id,
         string $title,
         string $slug,
-        string $text,
+        string $content,
         User $author,
         \DateTimeImmutable $createdAt,
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->slug = $slug;
-        $this->content = $text;
+        $this->content = $content;
         $this->author = $author;
         $this->createdAt = $createdAt;
         $this->updatedAt = null;

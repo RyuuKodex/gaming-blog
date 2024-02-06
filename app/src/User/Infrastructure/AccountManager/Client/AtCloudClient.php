@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace App\User\Infrastructure\AccountManager\Client;
 
 use App\User\Domain\Enum\IdentifierType;
-use App\User\Infrastructure\AccountManager\Client\Response\Identifier;
+use App\User\Infrastructure\AccountManager\Client\Response\IdentifierResponse;
 use App\User\Infrastructure\AccountManager\Client\Response\UserDataResponse;
+use App\User\Infrastructure\AccountManager\Client\Response\UserDataResponseInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final readonly class AtCloudClient
+final readonly class AtCloudClient implements AtCloudClientInterface
 {
     public function __construct(private HttpClientInterface $client) {}
 
-    public function fetchUserInformation(string $token): UserDataResponse
+    public function fetchUserInformation(string $token): UserDataResponseInterface
     {
         $response = $this->client->request(
             'GET',
@@ -27,6 +28,6 @@ final readonly class AtCloudClient
 
         $data = $response->toArray();
 
-        return new UserDataResponse($data['name'], new Identifier(IdentifierType::from($data['identifier']['type']), $data['identifier']['value']));
+        return new UserDataResponse($data['name'], new IdentifierResponse(IdentifierType::from($data['identifier']['type']), $data['identifier']['value']));
     }
 }
