@@ -1,6 +1,6 @@
 FROM ghcr.io/at-cloud-pro/caddy-php:3.0.0 AS app
 
-ENV VERSION="3.0.0"
+ENV VERSION="0.1.0"
 
 COPY ./app /app
 RUN composer install

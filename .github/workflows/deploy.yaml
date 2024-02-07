@@ -4,8 +4,8 @@ on:
         branches: [ "main" ]
         paths: [ "**", "!**.md" ]
 env:
-    PACKAGE_NAME: "ghcr.io/oskarbarcz/symfony-project-bootstrap"
-    PACKAGE_VERSION: "3.0.0"
+    PACKAGE_NAME: "ghcr.io/ryuukodex/gaming-blog"
+    PACKAGE_VERSION: "0.1.0"
 jobs:
     deploy:
         runs-on: ubuntu-22.04
