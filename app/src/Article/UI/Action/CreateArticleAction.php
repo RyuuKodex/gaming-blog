@@ -25,20 +25,20 @@ class CreateArticleAction extends AbstractController
         $form = $this->createForm(CreateArticleType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var CreateArticleData $articleDto */
-            $articleDto = $form->getData();
-            $id = Uuid::v4();
-
-            /** @var User $user */
-            $user = $this->getUser();
-
-            $command = new CreateArticleCommand($id, $articleDto->getTitle(), $articleDto->getContent(), $user);
-            $this->messageBus->dispatch($command);
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('createArticleForm.html.twig', ['form' => $form]);
         }
 
-        return $this->render('createArticleForm.html.twig', [
-            'form' => $form,
-        ]);
+        /** @var CreateArticleData $articleDto */
+        $articleDto = $form->getData();
+        $id = Uuid::v4();
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $command = new CreateArticleCommand($id, $articleDto->title, $articleDto->content, $user);
+        $this->messageBus->dispatch($command);
+
+        return $this->render('home.html.twig');
     }
 }

@@ -22,7 +22,7 @@ final class CreateUserHandlerTest extends TestCase
             ->method('save')
             ->with(self::callback(
                 fn (User $user) => (
-                    $user->getId()->equals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'))
+                    $user->getId()->equals(Uuid::fromString('92eac78d-2d52-4c78-b831-6e8ba80c7982'))
                 && 'name' === $user->getName()
                 && 'id' === $user->getUserIdentifier()
                 && 'someToken' === $user->getToken()
@@ -32,7 +32,7 @@ final class CreateUserHandlerTest extends TestCase
 
         $handler = new CreateUserHandler($userStore);
         $command = new CreateUserCommand(
-            Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'),
+            Uuid::fromString('92eac78d-2d52-4c78-b831-6e8ba80c7982'),
             'name',
             'id',
             'someToken'

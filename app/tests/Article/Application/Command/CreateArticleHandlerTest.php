@@ -33,7 +33,7 @@ final class CreateArticleHandlerTest extends TestCase
             ->method('save')
             ->with(self::callback(
                 fn (Article $article) => (
-                    $article->getId()->equals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'))
+                    $article->getId()->equals(Uuid::fromString('acd6780c-95a2-4c78-bd4b-d17ab5908c49'))
                     && 'title' === $article->getTitle()
                     && 'title' === $article->getSlug()
                     && 'content' === $article->getContent()
@@ -44,7 +44,7 @@ final class CreateArticleHandlerTest extends TestCase
 
         $handler = new CreateArticleHandler($articleStoreMock, $sluggerMock);
         $command = new CreateArticleCommand(
-            Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'),
+            Uuid::fromString('acd6780c-95a2-4c78-bd4b-d17ab5908c49'),
             'title',
             'content',
             $user

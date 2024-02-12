@@ -15,20 +15,27 @@ class Article
     #[ORM\Id]
     #[ORM\Column(type: 'uuid')]
     private Uuid $id;
+
     #[ORM\Column]
     private string $title;
+
     #[ORM\Column]
     private string $slug;
+
     #[ORM\Column(type: 'text')]
     private string $content;
+
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(name: 'author_id', nullable: false)]
     private User $author;
+
     #[ORM\ManyToOne(inversedBy: 'reviewedArticles')]
     #[ORM\JoinColumn(name: 'reviewer_id', nullable: true)]
     private ?User $reviewer;
+
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt;
 

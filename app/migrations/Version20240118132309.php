@@ -14,7 +14,8 @@ final class Version20240118132309 extends AbstractMigration
         $this->addSql('
             CREATE TABLE user (
                 id BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\',
-                name VARCHAR(255) NOT NULL, identifier VARCHAR(255) NOT NULL,
+                name VARCHAR(255) NOT NULL,
+                identifier VARCHAR(255) NOT NULL,
                 token LONGTEXT NOT NULL,
                 roles JSON NOT NULL,
                 PRIMARY KEY(id)

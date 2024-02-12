@@ -20,8 +20,6 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-use function PHPUnit\Framework\once;
-
 final class AtCloudAuthenticatorTest extends TestCase
 {
     public function testSupports(): void
@@ -110,7 +108,7 @@ final class AtCloudAuthenticatorTest extends TestCase
         ;
 
         $user
-            ->expects(once())
+            ->expects(self::once())
             ->method('updateToken')
         ;
 
@@ -131,6 +129,7 @@ final class AtCloudAuthenticatorTest extends TestCase
         $request
             ->expects(self::once())
             ->method('get')
+            ->with('token')
             ->willReturn('token')
         ;
 

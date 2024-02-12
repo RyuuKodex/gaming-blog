@@ -14,16 +14,12 @@
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="9.6" />
-        <env name="MESSENGER_TRANSPORT_DSN" value="doctrine://default?auto_setup=0"/>
         <env name="DATABASE_URL" value="mysql://user:password@database:3306/symfony-bootstrap"/>
     </php>
 
     <testsuites>
         <testsuite name="unit">
             <directory>tests</directory>
-        </testsuite>
-        <testsuite name="functional">
-            <directory>tests/</directory>
         </testsuite>
     </testsuites>
 
