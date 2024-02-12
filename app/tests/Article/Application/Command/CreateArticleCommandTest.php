@@ -22,9 +22,9 @@ final class CreateArticleCommandTest extends TestCase
             $user
         );
 
-        $this->assertEquals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'), $command->getId());
-        $this->assertSame('title', $command->getTitle());
-        $this->assertSame('content', $command->getContent());
-        $this->assertSame($user, $command->getAuthor());
+        $this->assertEquals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'), $command->id);
+        $this->assertSame('title', $command->title);
+        $this->assertSame('content', $command->content);
+        $this->assertSame($user, $command->author);
     }
 }

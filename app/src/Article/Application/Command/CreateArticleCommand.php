@@ -10,29 +10,9 @@ use Symfony\Component\Uid\Uuid;
 final readonly class CreateArticleCommand
 {
     public function __construct(
-        private Uuid $id,
-        private string $title,
-        private string $content,
-        private User $author
+        public Uuid $id,
+        public string $title,
+        public string $content,
+        public User $author
     ) {}
-
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    public function getAuthor(): User
-    {
-        return $this->author;
-    }
 }

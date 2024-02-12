@@ -15,7 +15,7 @@ final readonly class CreateUserHandler
 
     public function __invoke(CreateUserCommand $command): void
     {
-        $user = new User($command->getId(), $command->getName(), $command->getIdentifier(), $command->getToken());
+        $user = new User($command->id, $command->name, $command->identifier, $command->token);
 
         $this->userStore->save($user);
     }

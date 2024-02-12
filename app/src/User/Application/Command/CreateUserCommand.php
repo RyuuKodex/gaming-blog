@@ -9,29 +9,9 @@ use Symfony\Component\Uid\Uuid;
 final readonly class CreateUserCommand
 {
     public function __construct(
-        private Uuid $id,
-        private string $name,
-        private string $identifier,
-        private string $token
+        public Uuid $id,
+        public string $name,
+        public string $identifier,
+        public string $token
     ) {}
-
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getIdentifier(): string
-    {
-        return $this->identifier;
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
-    }
 }

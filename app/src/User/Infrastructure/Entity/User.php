@@ -18,10 +18,13 @@ class User implements UserInterface
     #[ORM\Id]
     #[ORM\Column(type: 'uuid')]
     private Uuid $id;
+
     #[ORM\Column]
     private string $name;
+
     #[ORM\Column]
     private string $identifier;
+
     #[ORM\Column(type: 'text')]
     private string $token;
 

@@ -13,15 +13,15 @@ final class CreateUserCommandTest extends TestCase
     public function testCreate(): void
     {
         $command = new CreateUserCommand(
-            Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'),
+            Uuid::fromString('9529dc69-6d6e-439c-9c57-fbb36c299f65'),
             'name',
             'id',
             'someToken'
         );
 
-        $this->assertEquals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'), $command->getId());
-        $this->assertSame('name', $command->getName());
-        $this->assertSame('id', $command->getIdentifier());
-        $this->assertSame('someToken', $command->getToken());
+        $this->assertEquals(Uuid::fromString('9529dc69-6d6e-439c-9c57-fbb36c299f65'), $command->id);
+        $this->assertSame('name', $command->name);
+        $this->assertSame('id', $command->identifier);
+        $this->assertSame('someToken', $command->token);
     }
 }

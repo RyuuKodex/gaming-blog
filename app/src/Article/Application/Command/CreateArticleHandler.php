@@ -16,14 +16,14 @@ final readonly class CreateArticleHandler
 
     public function __invoke(CreateArticleCommand $command): void
     {
-        $slug = $this->slugger->slug($command->getTitle());
+        $slug = $this->slugger->slug($command->title);
 
         $article = new Article(
-            $command->getId(),
-            $command->getTitle(),
+            $command->id,
+            $command->title,
             strtolower($slug->toString()),
-            $command->getContent(),
-            $command->getAuthor(),
+            $command->content,
+            $command->author,
             new \DateTimeImmutable()
         );
 

@@ -14,13 +14,13 @@ final class UserTest extends TestCase
     public function testCreate(): void
     {
         $user = new User(
-            Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'),
+            Uuid::fromString('6315c9bf-7366-43ef-88dd-aab6543a04ff'),
             'John Doe',
             'id',
             'token'
         );
 
-        $this->assertEquals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'), $user->getId());
+        $this->assertEquals(Uuid::fromString('6315c9bf-7366-43ef-88dd-aab6543a04ff'), $user->getId());
         $this->assertSame('John Doe', $user->getName());
         $this->assertSame('id', $user->getUserIdentifier());
         $this->assertSame('token', $user->getToken());

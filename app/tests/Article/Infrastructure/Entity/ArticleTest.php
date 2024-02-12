@@ -16,7 +16,7 @@ final class ArticleTest extends TestCase
         $user = $this->createMock(User::class);
         $createdAt = $this->createMock(\DateTimeImmutable::class);
         $article = new Article(
-            Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'),
+            Uuid::fromString('18438f6e-3b2d-404b-ac5e-42bf178d3e5b'),
             'title',
             'title',
             'content',
@@ -24,7 +24,7 @@ final class ArticleTest extends TestCase
             $createdAt
         );
 
-        $this->assertEquals(Uuid::fromString('74428275-0df2-4cf6-be7c-c55ee6e50c20'), $article->getId());
+        $this->assertEquals(Uuid::fromString('18438f6e-3b2d-404b-ac5e-42bf178d3e5b'), $article->getId());
         $this->assertSame('title', $article->getTitle());
         $this->assertSame('title', $article->getSlug());
         $this->assertSame('content', $article->getContent());
