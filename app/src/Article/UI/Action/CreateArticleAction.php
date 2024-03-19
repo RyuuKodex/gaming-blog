@@ -19,7 +19,7 @@ class CreateArticleAction extends AbstractController
 {
     public function __construct(private readonly MessageBusInterface $messageBus) {}
 
-    #[Route('/api/create-article')]
+    #[Route('/app/article/create')]
     public function __invoke(Request $request): Response
     {
         $form = $this->createForm(CreateArticleType::class);

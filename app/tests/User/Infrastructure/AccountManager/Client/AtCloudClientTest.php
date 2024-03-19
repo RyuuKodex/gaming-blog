@@ -32,7 +32,7 @@ final class AtCloudClientTest extends TestCase
                 'https://accounts.atcloud.pro/api/security/me',
                 [
                     'headers' => [
-                        'X-Sso-External-Service-Id' => ' c737542a-8d55-4d92-bdc6-0379694abc56',
+                        'X-Sso-External-Service-Id' => 'c737542a-8d55-4d92-bdc6-0379694abc56',
                         'Authorization' => 'Bearer token',
                     ],
                 ]
